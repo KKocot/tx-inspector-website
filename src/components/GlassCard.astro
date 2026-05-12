@@ -1,0 +1,87 @@
+---
+interface Props {
+  variant?: "default" | "feature" | "highlight";
+  class?: string;
+  style?: string;
+}
+
+const { variant = "default", class: className, style } = Astro.props;
+
+const baseClasses = [
+  "glass-card",
+  "relative",
+  "rounded-2xl",
+  "border border-[var(--color-border)]",
+  "p-6 md:p-8",
+  "transition-all duration-250 ease-out",
+];
+
+const variantClasses: Record<string, string> = {
+  default: "",
+  feature: "glass-card--feature",
+  highlight: "glass-card--highlight",
+};
+---
+
+<div
+  class:list={[
+    ...baseClasses,
+    variantClasses[variant],
+    className,
+  ]}
+  style={style}
+>
+  <slot />
+</div>
+
+<style>
+  .glass-card {
+    background: rgba(10, 10, 10, 0.6);
+    box-shadow:
+      0 0 0 1px var(--color-border),
+      0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  .glass-card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow:
+      0 0 0 1px var(--color-border-hover),
+      0 4px 16px rgba(0, 0, 0, 0.5),
+      0 0 40px var(--color-primary-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Feature variant — gradient top border */
+  .glass-card--feature::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1.5rem;
+    right: 1.5rem;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(15, 186, 189, 0.4) 30%,
+      rgba(15, 189, 134, 0.2) 70%,
+      transparent 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Highlight variant — glow shadow */
+  .glass-card--highlight {
+    box-shadow:
+      0 0 0 1px var(--color-border),
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(15, 186, 189, 0.2),
+      0 0 60px rgba(15, 186, 189, 0.05);
+  }
+
+  /* Safari fallback (for glass-card used with backdrop context, e.g. Nav) */
+  @supports not (backdrop-filter: blur(1px)) {
+    .glass-card {
+      background: rgba(10, 10, 10, 0.95);
+    }
+  }
+</style>

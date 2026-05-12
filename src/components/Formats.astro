@@ -1,0 +1,217 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+import GlassCard from "./GlassCard.astro";
+import Badge from "./Badge.astro";
+---
+
+<section
+  id="formats"
+  class="relative py-16 md:py-20 lg:py-24"
+  aria-labelledby="formats-heading"
+>
+  <div class="mx-auto max-w-[1200px] px-5 sm:px-6 md:px-8">
+    <SectionHeader
+      badge="INPUT FORMATS"
+      title="Accepts any transaction format"
+      description="No matter how you have the data, Transaction Inspector handles it."
+      id="formats-heading"
+    />
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+
+      <!-- JSON Transaction -->
+      <div
+        class="animate-on-scroll"
+        data-animate="fade-up"
+        data-delay="0"
+      >
+        <GlassCard class="format-card">
+          <div class="mb-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <!-- Braces / curly-brackets icon -->
+              <svg
+                class="h-6 w-6 text-primary"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
+                <path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" />
+              </svg>
+              <h3 class="text-lg font-semibold text-text">JSON Transaction</h3>
+            </div>
+            <Badge text="JSON" variant="neutral" />
+          </div>
+
+          <pre
+            class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5"
+            aria-label="Example JSON transaction"
+          ><code class="font-mono text-xs leading-relaxed"><span class="token-bracket">{</span>
+  <span class="token-key">"ref_block_num"</span>: <span class="token-number">1234</span>,
+  <span class="token-key">"operations"</span>: <span class="token-bracket">[</span>
+    <span class="token-bracket">[</span><span class="token-string">"transfer"</span>, <span class="token-bracket">{</span>
+      <span class="token-key">"from"</span>: <span class="token-string">"alice"</span>,
+      <span class="token-key">"to"</span>: <span class="token-string">"bob"</span>
+    <span class="token-bracket">}</span><span class="token-bracket">]</span>
+  <span class="token-bracket">]</span>
+<span class="token-bracket">}</span></code></pre>
+        </GlassCard>
+      </div>
+
+      <!-- Transaction Hash -->
+      <div
+        class="animate-on-scroll"
+        data-animate="fade-up"
+        data-delay="80"
+      >
+        <GlassCard class="format-card">
+          <div class="mb-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <!-- Hash icon -->
+              <svg
+                class="h-6 w-6 text-secondary"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="4" x2="20" y1="9" y2="9" />
+                <line x1="4" x2="20" y1="15" y2="15" />
+                <line x1="10" x2="8" y1="3" y2="21" />
+                <line x1="16" x2="14" y1="3" y2="21" />
+              </svg>
+              <h3 class="text-lg font-semibold text-text">Transaction Hash</h3>
+            </div>
+            <Badge text="HASH / ID" variant="neutral" />
+          </div>
+
+          <pre
+            class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5"
+            aria-label="Example transaction hash"
+          ><code class="font-mono text-sm leading-relaxed text-text-muted">abc123def456...789</code></pre>
+
+          <p class="mt-4 text-sm leading-relaxed text-text-muted">
+            Paste any transaction ID — the inspector fetches it directly from the HIVE blockchain.
+          </p>
+        </GlassCard>
+      </div>
+
+      <!-- Binary / Hex -->
+      <div
+        class="animate-on-scroll"
+        data-animate="fade-up"
+        data-delay="160"
+      >
+        <GlassCard class="format-card">
+          <div class="mb-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <!-- Binary icon -->
+              <svg
+                class="h-6 w-6 text-accent"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="14" y="14" width="4" height="6" rx="2" />
+                <rect x="6" y="4" width="4" height="6" rx="2" />
+                <path d="M6 20h4" />
+                <path d="M14 10h4" />
+                <path d="M6 14h2v6" />
+                <path d="M14 4h2v6" />
+              </svg>
+              <h3 class="text-lg font-semibold text-text">Binary & Hexadecimal</h3>
+            </div>
+            <Badge text="HEX / BINARY" variant="neutral" />
+          </div>
+
+          <pre
+            class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5"
+            aria-label="Example hexadecimal transaction"
+          ><code class="font-mono text-sm leading-relaxed text-text-muted">0x1f8b0800000000000003...</code></pre>
+
+          <p class="mt-4 text-sm leading-relaxed text-text-muted">
+            Raw binary or hex-encoded transactions are decoded automatically.
+          </p>
+        </GlassCard>
+      </div>
+
+      <!-- File Upload -->
+      <div
+        class="animate-on-scroll"
+        data-animate="fade-up"
+        data-delay="240"
+      >
+        <GlassCard class="format-card">
+          <div class="mb-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <!-- Upload icon -->
+              <svg
+                class="h-6 w-6 text-primary"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="17 8 12 3 7 8" />
+                <line x1="12" x2="12" y1="3" y2="15" />
+              </svg>
+              <h3 class="text-lg font-semibold text-text">File Upload</h3>
+            </div>
+            <Badge text="FILE UPLOAD" variant="neutral" />
+          </div>
+
+          <!-- Dropzone visual -->
+          <div class="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-[var(--color-border-hover)] bg-[var(--color-surface-code)] px-6 py-8">
+            <svg
+              class="h-8 w-8 text-text-dim"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" x2="12" y1="3" y2="15" />
+            </svg>
+            <span class="text-sm text-text-muted">Drop your file here</span>
+            <span class="text-xs font-medium tracking-wide text-text-dim">.json, .bin, or .hex</span>
+          </div>
+
+          <p class="mt-4 text-sm leading-relaxed text-text-muted">
+            Upload JSON, binary, or hex files. Auto-detection of format included.
+          </p>
+        </GlassCard>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Code block base styling */
+  .code-block {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Format cards — no translateY hover on code cards */
+  .format-card:hover {
+    transform: none;
+  }
+</style>

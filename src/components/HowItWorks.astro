@@ -1,0 +1,235 @@
+---
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section
+  id="how-it-works"
+  class="relative py-16 md:py-20 lg:py-24"
+  aria-labelledby="how-it-works-heading"
+>
+  <div class="mx-auto max-w-[1200px] px-5 sm:px-6 md:px-8">
+    <SectionHeader
+      badge="How It Works"
+      title="Three steps to full transparency"
+      id="how-it-works-heading"
+    />
+
+    <!-- Steps — vertical on mobile, horizontal on md+ -->
+    <div class="steps mx-auto flex max-w-[1040px] flex-col items-start gap-10 md:flex-row md:items-start md:gap-0">
+
+      <!-- Step 1: Paste or Upload -->
+      <div
+        class="step animate-on-scroll flex w-full items-start gap-5 md:max-w-[320px] md:flex-col md:items-center md:text-center"
+        data-animate="fade-in-scale"
+        data-delay="0"
+      >
+        <!-- Step indicator circle -->
+        <div class="step__indicator step__indicator--primary relative flex-shrink-0">
+          <span class="font-mono text-xl font-semibold text-primary">1</span>
+        </div>
+
+        <div class="flex-1">
+          <!-- Icon -->
+          <div class="mb-3 md:mb-4 md:flex md:justify-center">
+            <svg
+              class="h-6 w-6 text-primary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-semibold text-text">Paste or Upload</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-muted">
+            Enter a transaction as JSON, hash, binary hex, or upload a file. The inspector auto-detects your format.
+          </p>
+        </div>
+      </div>
+
+      <!-- Connector 1→2 -->
+      <div class="connector" aria-hidden="true">
+        <div
+          class="animate-on-scroll connector__line"
+          data-animate="grow-line"
+          data-delay="200"
+        ></div>
+      </div>
+
+      <!-- Step 2: Instant Analysis -->
+      <div
+        class="step animate-on-scroll flex w-full items-start gap-5 md:max-w-[320px] md:flex-col md:items-center md:text-center"
+        data-animate="fade-in-scale"
+        data-delay="120"
+      >
+        <!-- Step indicator circle -->
+        <div class="step__indicator step__indicator--secondary relative flex-shrink-0">
+          <span class="font-mono text-xl font-semibold text-secondary">2</span>
+        </div>
+
+        <div class="flex-1">
+          <!-- Icon -->
+          <div class="mb-3 md:mb-4 md:flex md:justify-center">
+            <svg
+              class="h-6 w-6 text-secondary"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="10" cy="10" r="7"></circle>
+              <path d="m21 21-4.343-4.343"></path>
+              <path d="m10 7-3 3 3 3"></path>
+              <path d="m14 7-3 3 3 3"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-semibold text-text">Instant Analysis</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-muted">
+            The inspector decodes your transaction, verifies signatures against the blockchain, and traces all authority paths.
+          </p>
+        </div>
+      </div>
+
+      <!-- Connector 2→3 -->
+      <div class="connector" aria-hidden="true">
+        <div
+          class="animate-on-scroll connector__line"
+          data-animate="grow-line"
+          data-delay="400"
+        ></div>
+      </div>
+
+      <!-- Step 3: Verify & Explore -->
+      <div
+        class="step animate-on-scroll flex w-full items-start gap-5 md:max-w-[320px] md:flex-col md:items-center md:text-center"
+        data-animate="fade-in-scale"
+        data-delay="240"
+      >
+        <!-- Step indicator circle -->
+        <div class="step__indicator step__indicator--accent relative flex-shrink-0">
+          <span class="font-mono text-xl font-semibold text-accent">3</span>
+        </div>
+
+        <div class="flex-1">
+          <!-- Icon -->
+          <div class="mb-3 md:mb-4 md:flex md:justify-center">
+            <svg
+              class="h-6 w-6 text-accent"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+
+          <h3 class="text-lg font-semibold text-text">Verify & Explore</h3>
+          <p class="mt-2 text-sm leading-relaxed text-text-muted">
+            See if all required authorities are satisfied. Explore operations, metadata, and the complete signing chain.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+   * Step indicator — circle with number
+   * ============================================================ */
+  .step__indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;   /* 48px */
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    transition: border-color 250ms ease-out, background-color 250ms ease-out;
+  }
+
+  .step__indicator--primary:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-subtle);
+  }
+
+  .step__indicator--secondary:hover {
+    border-color: var(--color-secondary);
+    background: rgba(15, 189, 134, 0.08);
+  }
+
+  .step__indicator--accent:hover {
+    border-color: var(--color-accent);
+    background: rgba(189, 116, 15, 0.08);
+  }
+
+  /* ============================================================
+   * Connector lines between steps
+   * ============================================================ */
+
+  /* Mobile: vertical connector between steps */
+  .connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Vertical on mobile: positioned to left, aligning with circle center */
+    width: 3rem;   /* match circle width */
+    height: 2.5rem; /* 40px vertical gap */
+    flex-shrink: 0;
+  }
+
+  .connector__line {
+    width: 1px;
+    height: 100%;
+    border-left: 1px dashed var(--color-border);
+    transform-origin: top center;
+  }
+
+  /* Desktop (md+): horizontal connector */
+  @media (min-width: 768px) {
+    .connector {
+      width: auto;
+      height: auto;
+      flex: 1;
+      align-self: stretch;
+      /* Align connector vertically with the center of the step circle (48px / 2 = 24px from top) */
+      padding-top: 1.5rem; /* 24px — center of circle */
+    }
+
+    .connector__line {
+      width: 100%;
+      height: 0;
+      border-left: none;
+      border-top: 1px dashed var(--color-border);
+      transform-origin: left center;
+    }
+  }
+
+  /* ============================================================
+   * Reduced motion
+   * ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .step,
+    .connector__line {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+</style>

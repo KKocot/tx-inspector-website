@@ -1,0 +1,236 @@
+---
+/**
+ * Nav — Sticky glassmorphism navigation bar.
+ *
+ * Features:
+ * - Glassmorphism backdrop (blur + semi-transparent bg)
+ * - Logo with inline SVG hexagon icon + wordmark
+ * - "Launch App" CTA button
+ * - Mobile: CSS-only hamburger via <details> (no JS framework)
+ * - Smooth-scroll nav links (Features, How it Works, Formats)
+ */
+
+import { APP_URL } from "../config";
+
+const appUrl = APP_URL;
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 h-16 border-b border-white/5 bg-black/60 backdrop-blur-xl backdrop-saturate-150"
+  role="banner"
+>
+  <nav
+    class="mx-auto flex h-full max-w-[1200px] items-center justify-between px-5 sm:px-6 md:px-8"
+    aria-label="Main navigation"
+  >
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2.5 no-underline" aria-label="Transaction Inspector — Home">
+      <!-- Hexagon icon -->
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 28 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        class="shrink-0"
+      >
+        <path
+          d="M14 2L25.26 8.5V21.5L14 28L2.74 21.5V8.5L14 2Z"
+          stroke="var(--color-primary)"
+          stroke-width="1.5"
+          fill="none"
+        />
+        <!-- Magnifying glass inside hexagon -->
+        <circle
+          cx="12.5"
+          cy="12.5"
+          r="4"
+          stroke="var(--color-primary)"
+          stroke-width="1.5"
+          fill="none"
+        />
+        <line
+          x1="15.5"
+          y1="15.5"
+          x2="19"
+          y2="19"
+          stroke="var(--color-primary)"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <!-- Wordmark: full on sm+, abbreviated below -->
+      <span class="hidden text-base font-semibold tracking-tight text-[var(--color-text)] sm:inline">
+        Transaction Inspector
+      </span>
+      <span class="inline text-base font-semibold tracking-tight text-[var(--color-text)] sm:hidden">
+        TX Inspector
+      </span>
+    </a>
+
+    <!-- Desktop nav links (hidden on mobile) -->
+    <ul class="hidden items-center gap-6 md:flex" role="list">
+      <li>
+        <a
+          href="#features"
+          class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
+        >
+          Features
+        </a>
+      </li>
+      <li>
+        <a
+          href="#how-it-works"
+          class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
+        >
+          How it Works
+        </a>
+      </li>
+      <li>
+        <a
+          href="#formats"
+          class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
+        >
+          Formats
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right side: CTA + mobile menu -->
+    <div class="flex items-center gap-3">
+      <!-- Launch App CTA (always visible) -->
+      <a
+        href={appUrl}
+        class="nav-cta inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-black shadow-[0_1px_2px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-200 ease-out hover:brightness-[1.15] hover:shadow-[0_0_30px_rgba(15,186,189,0.2),0_0_60px_rgba(15,186,189,0.05)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+      >
+        Launch App
+        <!-- Arrow right icon -->
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+
+      <!-- Mobile hamburger menu (CSS-only via details/summary) -->
+      <details class="relative md:hidden" id="mobile-menu">
+        <summary
+          class="flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-[var(--color-border)] bg-transparent text-[var(--color-text-muted)] transition-colors duration-200 ease-out list-none hover:border-[var(--color-border-hover)] hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] [&::-webkit-details-marker]:hidden"
+          aria-label="Toggle navigation menu"
+        >
+          <!-- Hamburger icon (visible when closed) -->
+          <svg
+            class="hamburger-open"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+          </svg>
+          <!-- Close icon (visible when open) -->
+          <svg
+            class="hamburger-close hidden"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </summary>
+
+        <!-- Mobile dropdown menu -->
+        <div
+          class="absolute right-0 top-14 w-56 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3 shadow-lg backdrop-blur-xl backdrop-saturate-130"
+        >
+          <ul class="flex flex-col gap-1" role="list">
+            <li>
+              <a
+                href="#features"
+                class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
+              >
+                Features
+              </a>
+            </li>
+            <li>
+              <a
+                href="#how-it-works"
+                class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
+              >
+                How it Works
+              </a>
+            </li>
+            <li>
+              <a
+                href="#formats"
+                class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
+              >
+                Formats
+              </a>
+            </li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<style>
+  /* Toggle hamburger/close icons when details is open */
+  details[open] .hamburger-open {
+    display: none;
+  }
+  details[open] .hamburger-close {
+    display: block;
+  }
+
+  /* Close mobile menu when a nav link is clicked */
+  /* This relies on the details element losing focus */
+</style>
+
+<script>
+  // Close mobile menu when a nav link is clicked
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      const details = document.getElementById('mobile-menu') as HTMLDetailsElement | null;
+      if (details) details.open = false;
+    });
+  });
+
+  // Close mobile menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const details = document.getElementById('mobile-menu') as HTMLDetailsElement | null;
+      if (details?.open) {
+        details.open = false;
+        const summary = details.querySelector('summary');
+        summary?.focus();
+      }
+    }
+  });
+</script>

@@ -1,0 +1,103 @@
+---
+/**
+ * CTA -- Bottom call-to-action section.
+ *
+ * Design Brief 5.7:
+ * - Full-width with radial gradient background (primary glow)
+ * - Centered text block with headline, description, primary CTA
+ * - Small trust note below button
+ * - py-24 md:py-32
+ */
+
+import Button from "./Button.astro";
+import { APP_URL } from "../config";
+
+const appUrl = APP_URL;
+---
+
+<section
+  id="cta"
+  class="cta-section relative py-16 md:py-24 lg:py-32"
+  aria-labelledby="cta-heading"
+>
+  <!-- Background glow effect -->
+  <div class="cta-glow" aria-hidden="true"></div>
+
+  <div class="relative z-10 mx-auto max-w-[1200px] px-5 sm:px-6 md:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <!-- Headline -->
+      <h2
+        id="cta-heading"
+        class="animate-on-scroll text-[2rem] font-bold leading-[1.1] tracking-[-0.025em] text-text sm:text-[2.5rem] lg:text-[3.5rem]"
+        data-animate="fade-up"
+        data-delay="0"
+      >
+        Ready to inspect your first transaction?
+      </h2>
+
+      <!-- Subline -->
+      <p
+        class="animate-on-scroll mx-auto mt-4 max-w-[480px] text-base leading-relaxed text-text-muted lg:mt-6 lg:text-xl"
+        data-animate="fade-up"
+        data-delay="80"
+      >
+        Paste a transaction hash and get instant verification. No signup. No
+        fees. Open source.
+      </p>
+
+      <!-- CTA Button -->
+      <div
+        class="animate-on-scroll mt-8 lg:mt-10"
+        data-animate="fade-up"
+        data-delay="160"
+      >
+        <Button
+          href={appUrl}
+          variant="primary"
+          size="lg"
+          target="_blank"
+          aria-label="Launch Transaction Inspector (opens in new tab)"
+        >
+          Launch App
+          <!-- Arrow right icon -->
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </Button>
+      </div>
+
+      <!-- Trust note -->
+      <p
+        class="animate-on-scroll mt-6 text-sm text-[var(--color-text-dim,#71717a)] lg:mt-8"
+        data-animate="fade-up"
+        data-delay="240"
+      >
+        Free &amp; open-source &middot; No account required &middot; Runs in
+        your browser
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 70% 50% at 50% 100%,
+      rgba(15, 186, 189, 0.06) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+</style>

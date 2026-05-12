@@ -1,0 +1,164 @@
+---
+import Badge from "./Badge.astro";
+import Button from "./Button.astro";
+import HeroVisual from "./HeroVisual.astro";
+import { APP_URL, GITLAB_URL } from "../config";
+---
+
+<section id="hero" class="hero relative overflow-hidden" aria-label="Hero">
+  <!-- Background glow effect -->
+  <div class="hero__bg-glow" aria-hidden="true"></div>
+
+  <div class="relative z-10 mx-auto max-w-[1200px] px-5 pt-[120px] pb-16 sm:px-6 md:px-8 lg:pt-[160px] lg:pb-24">
+    <!-- Text block — centered -->
+    <div class="flex flex-col items-center text-center">
+      <!-- Tagline badge -->
+      <div class="hero__animate" style="--animate-delay: 0ms; --animate-y: 8px;">
+        <Badge text="Blockchain Forensics Tool" variant="neutral" />
+      </div>
+
+      <!-- Headline -->
+      <h1
+        class="hero__animate mt-6 text-[2.5rem] font-bold leading-[1.05] tracking-[-0.03em] sm:text-[3rem] lg:text-[4.5rem]"
+        style="--animate-delay: 100ms; --animate-y: 16px;"
+      >
+        <span class="text-primary">Inspect.</span>{" "}
+        <span class="text-secondary">Verify.</span>{" "}
+        <span class="text-text">Trust.</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p
+        class="hero__animate mt-6 max-w-[560px] text-base leading-relaxed text-text-muted sm:text-lg lg:text-xl"
+        style="--animate-delay: 200ms; --animate-y: 12px;"
+      >
+        Analyze HIVE blockchain transactions. Verify signatures,
+        trace authority paths, and decode operations in seconds.
+      </p>
+
+      <!-- CTA buttons -->
+      <div
+        class="hero__animate mt-8 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:gap-4"
+        style="--animate-delay: 300ms; --animate-y: 8px;"
+      >
+        <Button href={APP_URL} variant="primary" size="lg" class="w-full sm:w-auto">
+          Launch App
+          <!-- Arrow right icon -->
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </Button>
+
+        <Button
+          href={GITLAB_URL}
+          variant="ghost"
+          size="lg"
+          target="_blank"
+          aria-label="View on GitLab (opens in new tab)"
+          class="w-full sm:w-auto"
+        >
+          <!-- GitLab icon -->
+          <svg
+            class="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m22 13.29-3.33-10a.42.42 0 0 0-.14-.18.38.38 0 0 0-.22-.11.39.39 0 0 0-.23.07.42.42 0 0 0-.14.18l-2.26 6.67H8.32L6.06 3.26a.42.42 0 0 0-.14-.18.38.38 0 0 0-.23-.07.39.39 0 0 0-.22.11.42.42 0 0 0-.14.18L2 13.29a.74.74 0 0 0 .27.83L12 21l9.69-6.88a.71.71 0 0 0 .31-.83Z"></path>
+          </svg>
+          View on GitLab
+        </Button>
+      </div>
+    </div>
+
+    <!-- Hero visual -->
+    <div
+      class="hero__animate-scale mt-16 lg:mt-20"
+      style="--animate-delay: 400ms; --animate-y: 24px; --animate-scale: 0.98;"
+    >
+      <HeroVisual />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Background glow */
+  .hero__bg-glow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1000px;
+    height: 600px;
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(15, 186, 189, 0.08) 0%,
+      rgba(15, 189, 134, 0.03) 40%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Entrance animations — fade-up */
+  .hero__animate {
+    opacity: 0;
+    transform: translateY(var(--animate-y, 16px));
+    animation: hero-fade-up 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--animate-delay, 0ms);
+  }
+
+  .hero__animate-scale {
+    opacity: 0;
+    transform: translateY(var(--animate-y, 24px)) scale(var(--animate-scale, 0.98));
+    animation: hero-fade-up-scale 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--animate-delay, 0ms);
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(var(--animate-y, 16px));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-fade-up-scale {
+    from {
+      opacity: 0;
+      transform: translateY(var(--animate-y, 24px)) scale(var(--animate-scale, 0.98));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero__animate,
+    .hero__animate-scale {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>

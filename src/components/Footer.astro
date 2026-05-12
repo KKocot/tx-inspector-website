@@ -1,0 +1,81 @@
+---
+/**
+ * Footer — Minimalist site footer.
+ *
+ * Layout:
+ * - Top row: brand info (left) + links (right) — stacks on mobile
+ * - Bottom row: copyright line
+ * - border-top separator
+ */
+
+import { GITLAB_URL, HIVE_URL, BLOCK_EXPLORER_URL } from "../config";
+
+const gitlabUrl = GITLAB_URL;
+const hiveUrl = HIVE_URL;
+const explorerUrl = BLOCK_EXPLORER_URL;
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-border-subtle,#1a1a1a)]" role="contentinfo">
+  <div class="mx-auto max-w-[1200px] px-5 pt-12 pb-8 sm:px-6 md:px-8">
+    <!-- Top row -->
+    <div class="flex flex-col items-center gap-6 text-center md:flex-row md:items-center md:justify-between md:text-left">
+      <!-- Brand -->
+      <div>
+        <p class="text-sm font-medium text-[var(--color-text-muted)]">
+          Transaction Inspector
+        </p>
+        <p class="mt-1 text-sm text-[var(--color-text-dim,#71717a)]">
+          A HIVE blockchain tool
+        </p>
+      </div>
+
+      <!-- Links -->
+      <nav aria-label="Footer navigation">
+        <ul class="flex flex-wrap items-center justify-center gap-6" role="list">
+          <li>
+            <a
+              href={gitlabUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block min-h-[44px] py-2 text-sm text-[var(--color-text-dim,#71717a)] transition-colors duration-150 ease-out hover:text-[var(--color-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+              aria-label="GitLab repository (opens in new tab)"
+            >
+              GitLab
+            </a>
+          </li>
+          <li>
+            <a
+              href={hiveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block min-h-[44px] py-2 text-sm text-[var(--color-text-dim,#71717a)] transition-colors duration-150 ease-out hover:text-[var(--color-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+              aria-label="HIVE Blockchain website (opens in new tab)"
+            >
+              HIVE Blockchain
+            </a>
+          </li>
+          <li>
+            <a
+              href={explorerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block min-h-[44px] py-2 text-sm text-[var(--color-text-dim,#71717a)] transition-colors duration-150 ease-out hover:text-[var(--color-text)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+              aria-label="Block Explorer (opens in new tab)"
+            >
+              Block Explorer
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="mt-6 border-t border-[var(--color-border-subtle,#1a1a1a)] pt-6">
+      <p class="text-center text-xs font-medium uppercase tracking-wider text-[var(--color-text-dim,#71717a)]">
+        &copy; {currentYear} HIVE Ecosystem. Open source under MIT License.
+      </p>
+    </div>
+  </div>
+</footer>

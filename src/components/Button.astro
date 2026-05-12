@@ -1,0 +1,49 @@
+---
+interface Props {
+  href: string;
+  variant?: "primary" | "ghost";
+  size?: "md" | "lg";
+  class?: string;
+  target?: string;
+  rel?: string;
+  "aria-label"?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  class: className = "",
+  target,
+  rel,
+  "aria-label": ariaLabel,
+} = Astro.props;
+
+const baseClasses =
+  "inline-flex items-center justify-center gap-2 font-semibold text-sm leading-none cursor-pointer rounded-lg transition-all duration-200 ease-out focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-primary focus-visible:outline-offset-2";
+
+const sizeClasses: Record<string, string> = {
+  md: "px-6 py-3",
+  lg: "px-8 py-4",
+};
+
+const variantClasses: Record<string, string> = {
+  primary:
+    "bg-primary text-black hover:brightness-[1.15] shadow-[0_1px_2px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(15,186,189,0.2),0_0_60px_rgba(15,186,189,0.05)]",
+  ghost:
+    "bg-transparent text-text font-medium border border-border hover:bg-surface-light hover:border-[#333333]",
+};
+
+const computedRel =
+  target === "_blank" ? [rel, "noopener noreferrer"].filter(Boolean).join(" ") : rel;
+---
+
+<a
+  href={href}
+  class:list={[baseClasses, sizeClasses[size], variantClasses[variant], className]}
+  target={target}
+  rel={computedRel}
+  aria-label={ariaLabel}
+>
+  <slot />
+</a>

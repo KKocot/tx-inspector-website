@@ -1,0 +1,52 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#000000"/>
+
+  <!-- Subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#111111" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Radial glow behind content -->
+  <radialGradient id="glow" cx="50%" cy="45%" r="40%">
+    <stop offset="0%" stop-color="#0fbabd" stop-opacity="0.12"/>
+    <stop offset="60%" stop-color="#0fbd86" stop-opacity="0.04"/>
+    <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Hexagon icon -->
+  <path d="M600 200 L636 220.8 L636 262.4 L600 283.2 L564 262.4 L564 220.8 Z"
+        stroke="#0fbabd" stroke-width="2" fill="none"/>
+  <!-- Magnifying glass inside hexagon -->
+  <circle cx="594" cy="237" r="10" stroke="#0fbabd" stroke-width="2" fill="none"/>
+  <line x1="601" y1="244" x2="610" y2="253" stroke="#0fbabd" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Title text -->
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif"
+        font-size="56" font-weight="700" fill="#fafafa" letter-spacing="-1">
+    Transaction Inspector
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="390" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif"
+        font-size="24" font-weight="400" fill="#a1a1aa" letter-spacing="0.5">
+    HIVE Blockchain Analysis Tool
+  </text>
+
+  <!-- Three authority type circles -->
+  <circle cx="530" cy="460" r="12" fill="rgba(15,189,134,0.2)" stroke="#0fbd86" stroke-width="2"/>
+  <text x="530" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#71717a">Posting</text>
+
+  <circle cx="600" cy="460" r="12" fill="rgba(15,186,189,0.2)" stroke="#0fbabd" stroke-width="2"/>
+  <text x="600" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#71717a">Active</text>
+
+  <circle cx="670" cy="460" r="12" fill="rgba(189,116,15,0.2)" stroke="#bd740f" stroke-width="2"/>
+  <text x="670" y="495" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#71717a">Owner</text>
+
+  <!-- Connecting lines between circles -->
+  <line x1="542" y1="460" x2="588" y2="460" stroke="#262626" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="612" y1="460" x2="658" y2="460" stroke="#262626" stroke-width="1" stroke-dasharray="4 3"/>
+</svg>

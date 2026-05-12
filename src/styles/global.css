@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* ============================================================
+ * FONTS — Geist (from npm: geist package)
+ * ============================================================ */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("/fonts/geist-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+}
+
+/* ============================================================
+ * DESIGN TOKENS — CSS Custom Properties
+ * ============================================================ */
+:root {
+  /* Brand colors */
+  --color-primary: #0fbabd;
+  --color-secondary: #0fbd86;
+  --color-accent: #bd740f;
+
+  /* Surface & background */
+  --color-background: #000000;
+  --color-surface: #0a0a0a;
+  --color-surface-light: #171717;
+  --color-surface-code: #0d0d0d;
+
+  /* Glow / alpha variants */
+  --color-primary-glow: rgba(15, 186, 189, 0.15);
+  --color-primary-subtle: rgba(15, 186, 189, 0.08);
+  --color-secondary-glow: rgba(15, 189, 134, 0.15);
+  --color-accent-glow: rgba(189, 116, 15, 0.15);
+
+  /* Border */
+  --color-border: #262626;
+  --color-border-subtle: #1a1a1a;
+  --color-border-hover: #333333;
+
+  /* Text */
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1aa;
+  --color-text-dim: #71717a;
+
+  /* Typography */
+  --font-sans: "Geist", "Geist Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Variable", ui-monospace, "SF Mono", monospace;
+}
+
+/* ============================================================
+ * BASE — element resets / page defaults
+ * ============================================================ */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+ * TAILWIND THEME EXTENSION — map CSS vars to tw utilities
+ * ============================================================ */
+@theme {
+  --color-primary: #0fbabd;
+  --color-secondary: #0fbd86;
+  --color-accent: #bd740f;
+  --color-background: #000000;
+  --color-surface: #0a0a0a;
+  --color-surface-light: #171717;
+  --color-border: #262626;
+  --color-border-subtle: #1a1a1a;
+  --color-border-hover: #333333;
+  --color-text: #fafafa;
+  --color-text-muted: #a1a1aa;
+  --color-text-dim: #71717a;
+
+  --font-family-sans: "Geist", "Geist Variable", system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Geist Mono", "Geist Mono Variable", ui-monospace, "SF Mono", monospace;
+}
+
+/* ============================================================
+ * SCROLL-TRIGGERED ANIMATIONS
+ * ============================================================ */
+
+/* Initial hidden state for scroll-animated elements */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(var(--animate-y, 16px));
+}
+
+/* Visible state — applied by IntersectionObserver */
+.animate-on-scroll.is-visible {
+  animation: scroll-fade-up 500ms ease-out forwards;
+  animation-delay: var(--stagger-delay, 0ms);
+}
+
+@keyframes scroll-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--animate-y, 16px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion — show everything immediately */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-on-scroll.is-visible {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
+ * SYNTAX HIGHLIGHTING TOKENS — shared across components
+ * ============================================================ */
+.token-key {
+  color: var(--color-primary);
+}
+
+.token-string {
+  color: var(--color-secondary);
+}
+
+.token-number {
+  color: var(--color-accent);
+}
+
+.token-bracket {
+  color: var(--color-text-dim);
+}
+
+/* ============================================================
+ * MICRO-INTERACTIONS — global polish
+ * ============================================================ */
+
+/* Selection color */
+::selection {
+  background: var(--color-primary);
+  color: #000000;
+}
+
+/* Focus-visible ring (global default for interactive elements) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: inherit;
+}
+
+/* Scrollbar styling — thin, dark, subtle */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-light) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-light);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border);
+}

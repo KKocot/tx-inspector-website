@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background -->
+  <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+  <!-- Magnifier glass -->
+  <circle cx="13" cy="13" r="7" stroke="#0fbabd" stroke-width="2" fill="none"/>
+  <line x1="18.5" y1="18.5" x2="26" y2="26" stroke="#0fbabd" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- TX symbol inside magnifier -->
+  <text x="9" y="17" font-family="monospace" font-size="8" font-weight="700" fill="#0fbd86">tx</text>
+</svg>
