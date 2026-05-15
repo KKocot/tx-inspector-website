@@ -10,9 +10,10 @@
  * - Smooth-scroll nav links (Features, How it Works, Formats)
  */
 
-import { APP_URL } from "../config";
+import { GITLAB_URL, HIVE_BRIDGE_URL } from "../config";
 
-const appUrl = APP_URL;
+const gitlabUrl = GITLAB_URL;
+const hiveBridgeUrl = HIVE_BRIDGE_URL;
 ---
 
 <header
@@ -82,44 +83,55 @@ const appUrl = APP_URL;
       </li>
       <li>
         <a
-          href="#how-it-works"
+          href="#details"
           class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
         >
-          How it Works
+          Details
         </a>
       </li>
       <li>
         <a
-          href="#formats"
+          href="#footer-cta"
           class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
         >
-          Formats
+          Open Source
         </a>
       </li>
     </ul>
 
-    <!-- Right side: CTA + mobile menu -->
+    <!-- Right side: icon links + CTA + mobile menu -->
     <div class="flex items-center gap-3">
-      <!-- Launch App CTA (always visible) -->
+      <!-- GitLab icon link (desktop only) -->
       <a
-        href={appUrl}
-        class="nav-cta inline-flex items-center gap-2 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-semibold text-black shadow-[0_1px_2px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-200 ease-out hover:brightness-[1.15] hover:shadow-[0_0_30px_rgba(15,186,189,0.2),0_0_60px_rgba(15,186,189,0.05)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+        href={gitlabUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitLab"
+        title="GitLab Repository"
+        class="hidden text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-primary)] md:inline-flex"
       >
-        Launch App
-        <!-- Arrow right icon -->
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 30.4L21.3 14.1H10.7L16 30.4Z"/><path d="M16 30.4L10.7 14.1H2.4L16 30.4Z" opacity="0.7"/><path d="M2.4 14.1L0.5 20.1C0.3 20.7 0.5 21.4 1 21.8L16 30.4L2.4 14.1Z" opacity="0.5"/><path d="M2.4 14.1H10.7L7.4 3.9C7.2 3.3 6.4 3.3 6.2 3.9L2.4 14.1Z"/><path d="M16 30.4L21.3 14.1H29.6L16 30.4Z" opacity="0.7"/><path d="M29.6 14.1L31.5 20.1C31.7 20.7 31.5 21.4 31 21.8L16 30.4L29.6 14.1Z" opacity="0.5"/><path d="M29.6 14.1H21.3L24.6 3.9C24.8 3.3 25.6 3.3 25.8 3.9L29.6 14.1Z"/></svg>
+      </a>
+
+      <!-- Hive Bridge icon link (desktop only) -->
+      <a
+        href={hiveBridgeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Hive Bridge"
+        title="Hive Bridge (Auth)"
+        class="hidden text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-primary)] md:inline-flex"
+      >
         <svg
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          width="24"
+          height="24"
+          viewBox="0 0 220 190"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
-          <path d="M5 12h14" />
-          <path d="m12 5 7 7-7 7" />
+          <path d="M157.272625,107.263942 C157.998992,107.263942 158.45262,108.051463 158.088736,108.68075 L111.33839,189.528945 C111.169808,189.820485 110.858795,190 110.522279,190 L81.9443812,190 C81.2180145,190 80.764386,189.212478 81.1282705,188.583191 L127.878616,107.734996 C128.047199,107.443456 128.358211,107.263942 128.694727,107.263942 L157.272625,107.263942 Z M129.477721,84.0901367 C129.141205,84.0901367 128.830192,83.9106218 128.66161,83.6190818 L81.1282705,1.41680884 C80.764386,0.787521511 81.2180145,0 81.9443812,0 L110.522279,0 C110.858795,0 111.169808,0.179514873 111.33839,0.471054898 L158.87173,82.6733278 C159.235614,83.3026152 158.781986,84.0901367 158.055619,84.0901367 L129.477721,84.0901367 Z" />
+          <path d="M135.128406 1.41635199C134.76385.787064228 135.218932 0 135.947343 0L164.565951 0C164.903712 0 165.215845.179714185 165.384888.47151174L219.873006 94.5275799C220.042331 94.8198642 220.042331 95.1801358 219.873006 95.4724201L165.384888 189.528488C165.215845 189.820286 164.903712 190 164.565951 190L135.947343 190C135.218932 190 134.76385 189.212936 135.128406 188.583648L189.342845 95 135.128406 1.41635199zM111.870216 94.5240823C112.042446 94.816752 112.043313 95.1785591 111.872487 95.4720377L57.1252257 189.528106C56.7599958 190.155572 55.8478414 190.157723 55.4796094 189.531986L.129783614 95.4759177C-.0424457704 95.183248-.0433125021 94.8214409.127512727 94.5279623L54.8747743.471894257C55.2400042-.15557243 56.1521586-.157723129 56.5203906.468014185L111.870216 94.5240823z" />
         </svg>
       </a>
 
@@ -179,21 +191,57 @@ const appUrl = APP_URL;
             </li>
             <li>
               <a
-                href="#how-it-works"
+                href="#details"
                 class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
               >
-                How it Works
+                Details
               </a>
             </li>
             <li>
               <a
-                href="#formats"
+                href="#footer-cta"
                 class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
               >
-                Formats
+                Open Source
               </a>
             </li>
           </ul>
+
+          <!-- External links -->
+          <div class="mt-2 flex flex-col gap-1 border-t border-[var(--color-border)] pt-2">
+            <a
+              href={gitlabUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitLab"
+              title="GitLab Repository"
+              class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-primary)]"
+            >
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 30.4L21.3 14.1H10.7L16 30.4Z"/><path d="M16 30.4L10.7 14.1H2.4L16 30.4Z" opacity="0.7"/><path d="M2.4 14.1L0.5 20.1C0.3 20.7 0.5 21.4 1 21.8L16 30.4L2.4 14.1Z" opacity="0.5"/><path d="M2.4 14.1H10.7L7.4 3.9C7.2 3.3 6.4 3.3 6.2 3.9L2.4 14.1Z"/><path d="M16 30.4L21.3 14.1H29.6L16 30.4Z" opacity="0.7"/><path d="M29.6 14.1L31.5 20.1C31.7 20.7 31.5 21.4 31 21.8L16 30.4L29.6 14.1Z" opacity="0.5"/><path d="M29.6 14.1H21.3L24.6 3.9C24.8 3.3 25.6 3.3 25.8 3.9L29.6 14.1Z"/></svg>
+              GitLab
+            </a>
+            <a
+              href={hiveBridgeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Hive Bridge"
+              title="Hive Bridge (Auth)"
+              class="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-primary)]"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 220 190"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d="M157.272625,107.263942 C157.998992,107.263942 158.45262,108.051463 158.088736,108.68075 L111.33839,189.528945 C111.169808,189.820485 110.858795,190 110.522279,190 L81.9443812,190 C81.2180145,190 80.764386,189.212478 81.1282705,188.583191 L127.878616,107.734996 C128.047199,107.443456 128.358211,107.263942 128.694727,107.263942 L157.272625,107.263942 Z M129.477721,84.0901367 C129.141205,84.0901367 128.830192,83.9106218 128.66161,83.6190818 L81.1282705,1.41680884 C80.764386,0.787521511 81.2180145,0 81.9443812,0 L110.522279,0 C110.858795,0 111.169808,0.179514873 111.33839,0.471054898 L158.87173,82.6733278 C159.235614,83.3026152 158.781986,84.0901367 158.055619,84.0901367 L129.477721,84.0901367 Z" />
+                <path d="M135.128406 1.41635199C134.76385.787064228 135.218932 0 135.947343 0L164.565951 0C164.903712 0 165.215845.179714185 165.384888.47151174L219.873006 94.5275799C220.042331 94.8198642 220.042331 95.1801358 219.873006 95.4724201L165.384888 189.528488C165.215845 189.820286 164.903712 190 164.565951 190L135.947343 190C135.218932 190 134.76385 189.212936 135.128406 188.583648L189.342845 95 135.128406 1.41635199zM111.870216 94.5240823C112.042446 94.816752 112.043313 95.1785591 111.872487 95.4720377L57.1252257 189.528106C56.7599958 190.155572 55.8478414 190.157723 55.4796094 189.531986L.129783614 95.4759177C-.0424457704 95.183248-.0433125021 94.8214409.127512727 94.5279623L54.8747743.471894257C55.2400042-.15557243 56.1521586-.157723129 56.5203906.468014185L111.870216 94.5240823z" />
+              </svg>
+              Hive Bridge
+            </a>
+          </div>
         </div>
       </details>
     </div>
