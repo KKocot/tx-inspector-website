@@ -20,20 +20,12 @@ const features = [
     delay: 80,
   },
   {
-    title: "Multi-Format Input",
-    description:
-      "Paste a transaction hash, JSON object, hexadecimal data, or upload a file. The inspector auto-detects the format.",
-    iconColor: "text-accent",
-    iconBg: "bg-accent/10",
-    delay: 160,
-  },
-  {
     title: "Operations Breakdown",
     description:
       "See every operation in the transaction with required authority levels, color-coded by type: posting, active, or owner.",
     iconColor: "text-primary",
     iconBg: "bg-primary/10",
-    delay: 240,
+    delay: 160,
   },
 ];
 ---
@@ -51,7 +43,7 @@ const features = [
       id="features-heading"
     />
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
       {features.map((feature, index) => (
         <div
           class="animate-on-scroll"
@@ -101,24 +93,6 @@ const features = [
                 </svg>
               )}
               {index === 2 && (
-                /* FileInput icon */
-                <svg
-                  class:list={["h-6 w-6", feature.iconColor]}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4" />
-                  <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                  <path d="M2 15h10" />
-                  <path d="m9 18 3-3-3-3" />
-                </svg>
-              )}
-              {index === 3 && (
                 /* Layers icon */
                 <svg
                   class:list={["h-6 w-6", feature.iconColor]}
