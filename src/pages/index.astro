@@ -2,11 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Features from "../components/Features.astro";
-import HowItWorks from "../components/HowItWorks.astro";
-import Formats from "../components/Formats.astro";
-import AuthorityTypes from "../components/AuthorityTypes.astro";
-import OpenSource from "../components/OpenSource.astro";
-import CTA from "../components/CTA.astro";
+import Details from "../components/Details.astro";
+import FooterCTA from "../components/FooterCTA.astro";
 ---
 
 <Layout>
@@ -16,18 +13,9 @@ import CTA from "../components/CTA.astro";
   <!-- FEATURES SECTION -->
   <Features />
 
-  <!-- HOW IT WORKS SECTION -->
-  <HowItWorks />
+  <!-- DETAILS SECTION (Formats + Authority Types) -->
+  <Details />
 
-  <!-- SUPPORTED FORMATS SECTION -->
-  <Formats />
-
-  <!-- AUTHORITY TYPES SECTION -->
-  <AuthorityTypes />
-
-  <!-- OPEN SOURCE / TECH SECTION -->
-  <OpenSource />
-
-  <!-- BOTTOM CTA SECTION -->
-  <CTA />
+  <!-- FOOTER CTA SECTION (Open Source + CTA) -->
+  <FooterCTA />
 </Layout>
