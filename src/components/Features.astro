@@ -1,30 +1,30 @@
 ---
-import SectionHeader from "./SectionHeader.astro";
-import GlassCard from "./GlassCard.astro";
-
 const features = [
   {
     title: "Signature Verification",
     description:
       "Verify transaction signatures against public keys. Instantly confirm cryptographic validity and detect tampering.",
-    iconColor: "text-secondary",
-    iconBg: "bg-secondary/10",
+    prefix: "01",
+    prefixColor: "text-[#0fbabd]",
+    hoverColor: "hover:text-[#3dd6d9]",
     delay: 0,
   },
   {
     title: "Authority Path Tracing",
     description:
       "Trace the complete authority chain — direct signing or delegated authority paths visualized as an interactive graph.",
-    iconColor: "text-primary",
-    iconBg: "bg-primary/10",
+    prefix: "02",
+    prefixColor: "text-[#0fbd86]",
+    hoverColor: "hover:text-[#4ebf71]",
     delay: 80,
   },
   {
     title: "Operations Breakdown",
     description:
       "See every operation in the transaction with required authority levels, color-coded by type: posting, active, or owner.",
-    iconColor: "text-primary",
-    iconBg: "bg-primary/10",
+    prefix: "03",
+    prefixColor: "text-[#bd740f]",
+    hoverColor: "hover:text-[#d4922e]",
     delay: 160,
   },
 ];
@@ -32,97 +32,96 @@ const features = [
 
 <section
   id="features"
-  class="relative py-16 md:py-20 lg:py-24"
+  class="relative min-h-screen flex flex-col items-center justify-center py-16 md:py-20 lg:py-24"
   aria-labelledby="features-heading"
 >
   <div class="mx-auto max-w-[1200px] px-5 sm:px-6 md:px-8">
-    <SectionHeader
-      badge="CAPABILITIES"
-      title="Everything you need to analyze transactions"
-      description="From signature verification to authority tracing, Transaction Inspector gives you complete visibility into HIVE blockchain operations."
-      id="features-heading"
-    />
+    <div class="mb-12 lg:mb-16">
+      <h2
+        id="features-heading"
+        class="animate-on-scroll text-[1.75rem] font-bold leading-[1.2] tracking-[-0.02em] text-text sm:text-[2rem] lg:text-[2.5rem]"
+        data-animate="fade-up"
+        data-delay="0"
+      >
+        Everything you need to analyze transactions
+      </h2>
 
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+      <p
+        class="animate-on-scroll mt-4 max-w-[640px] text-base leading-relaxed text-text-muted lg:text-xl"
+        data-animate="fade-up"
+        data-delay="50"
+      >
+        From signature verification to authority tracing, Transaction Inspector gives you complete visibility into HIVE blockchain operations.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-0 md:grid-cols-3">
       {features.map((feature, index) => (
         <div
-          class="animate-on-scroll"
+          class:list={[
+            "animate-on-scroll feature-item",
+            index < features.length - 1 ? "border-b border-border-subtle md:border-b-0" : "",
+          ]}
           data-animate="fade-up"
           data-delay={String(feature.delay)}
         >
-          <GlassCard variant="feature">
-            <!-- Icon container -->
-            <div
+          <div class="py-6 md:py-8">
+            <span
               class:list={[
-                "flex h-12 w-12 items-center justify-center rounded-lg",
-                feature.iconBg,
+                "font-mono text-sm",
+                feature.prefixColor,
               ]}
             >
-              {index === 0 && (
-                /* ShieldCheck icon */
-                <svg
-                  class:list={["h-6 w-6", feature.iconColor]}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-                  <path d="m9 12 2 2 4-4" />
-                </svg>
-              )}
-              {index === 1 && (
-                /* GitBranch icon */
-                <svg
-                  class:list={["h-6 w-6", feature.iconColor]}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <line x1="6" x2="6" y1="3" y2="15" />
-                  <circle cx="18" cy="6" r="3" />
-                  <circle cx="6" cy="18" r="3" />
-                  <path d="M18 9a9 9 0 0 1-9 9" />
-                </svg>
-              )}
-              {index === 2 && (
-                /* Layers icon */
-                <svg
-                  class:list={["h-6 w-6", feature.iconColor]}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" />
-                  <path d="m2 12 8.58 3.91a2 2 0 0 0 1.66 0L20.76 12" />
-                  <path d="m2 17 8.58 3.91a2 2 0 0 0 1.66 0L20.76 17" />
-                </svg>
-              )}
-            </div>
+              {feature.prefix}
+            </span>
 
-            <!-- Title -->
-            <h3 class="mt-5 text-lg font-semibold tracking-[-0.01em] text-text lg:text-2xl">
+            <h3
+              class:list={[
+                "feature-title mt-3 text-lg font-semibold tracking-[-0.01em] text-text",
+                feature.hoverColor,
+              ]}
+            >
               {feature.title}
             </h3>
 
-            <!-- Description -->
-            <p class="mt-2 max-w-[360px] text-sm leading-relaxed text-text-muted lg:text-base">
+            <p class="mt-2 max-w-[480px] text-sm leading-relaxed text-text-muted">
               {feature.description}
             </p>
-          </GlassCard>
+          </div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .feature-item {
+    transition: none;
+  }
+
+  .feature-title {
+    transition: color var(--duration-fast) var(--ease-out-quad);
+  }
+
+  /* 3-col grid separators on md+ */
+  @media (min-width: 768px) {
+    /* Vertical separators between columns 1-2 and 2-3 */
+    .feature-item:nth-child(1),
+    .feature-item:nth-child(2) {
+      border-right: 1px solid var(--color-border-subtle);
+    }
+
+    /* Padding: first gets pr, middle gets px, last gets pl */
+    .feature-item:nth-child(1) {
+      padding-right: 2rem;
+    }
+
+    .feature-item:nth-child(2) {
+      padding-inline: 2rem;
+    }
+
+    .feature-item:nth-child(3) {
+      padding-left: 2rem;
+    }
+  }
+</style>
