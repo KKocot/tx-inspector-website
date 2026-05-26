@@ -7,15 +7,12 @@
  * 2. Authority Types (from former AuthorityTypes.astro)
  */
 
-import SectionHeader from "./SectionHeader.astro";
-import GlassCard from "./GlassCard.astro";
 import Badge from "./Badge.astro";
 
 const authorities = [
   {
     name: "Posting",
     color: "#0fbd86",
-    colorAlpha: "rgba(15, 189, 134, 0.1)",
     badgeVariant: "posting" as const,
     tagText: "Most Common",
     description:
@@ -26,7 +23,6 @@ const authorities = [
   {
     name: "Active",
     color: "#0fbabd",
-    colorAlpha: "rgba(15, 186, 189, 0.1)",
     badgeVariant: "active" as const,
     tagText: "Financial",
     description:
@@ -37,7 +33,6 @@ const authorities = [
   {
     name: "Owner",
     color: "#bd740f",
-    colorAlpha: "rgba(189, 116, 15, 0.1)",
     badgeVariant: "owner" as const,
     tagText: "Highest Level",
     description:
@@ -50,28 +45,40 @@ const authorities = [
 
 <section
   id="details"
-  class="relative py-16 md:py-20 lg:py-24"
+  class="relative min-h-screen flex flex-col items-center justify-center py-16 md:py-20 lg:py-24"
   aria-labelledby="details-heading"
 >
   <div class="mx-auto max-w-[1200px] px-5 sm:px-6 md:px-8">
-    <SectionHeader
-      badge="DETAILS"
-      title="Formats & authority levels"
-      description="Transaction Inspector handles every input format and verifies against HIVE's three-tier authority system."
-      id="details-heading"
-    />
+    <div class="mb-12 lg:mb-16">
+      <h2
+        id="details-heading"
+        class="animate-on-scroll mt-3 text-[1.75rem] font-bold leading-[1.2] tracking-[-0.02em] text-text sm:text-[2rem] lg:text-[2.5rem]"
+        data-animate="fade-up"
+        data-delay="50"
+      >
+        Formats & authority levels
+      </h2>
+
+      <p
+        class="animate-on-scroll mt-4 max-w-[640px] text-base leading-relaxed text-text-muted lg:text-xl"
+        data-animate="fade-up"
+        data-delay="100"
+      >
+        Transaction Inspector handles every input format and verifies against HIVE's three-tier authority system.
+      </p>
+    </div>
 
     <!-- Sub-block 1: Supported Formats -->
     <div class="mb-16 md:mb-20">
       <h3
-        class="animate-on-scroll mb-8 text-center text-lg font-semibold tracking-[-0.01em] text-text-muted uppercase tracking-widest sm:text-xl"
+        class="animate-on-scroll mb-8 text-lg font-semibold text-text-muted uppercase tracking-widest sm:text-xl"
         data-animate="fade-up"
         data-delay="0"
       >
         Supported Formats
       </h3>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
 
         <!-- JSON Transaction -->
         <div
@@ -79,29 +86,28 @@ const authorities = [
           data-animate="fade-up"
           data-delay="0"
         >
-          <GlassCard class="format-card">
-            <div class="mb-4 flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <svg
-                  class="h-6 w-6 text-primary"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
-                  <path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" />
-                </svg>
-                <h4 class="text-lg font-semibold text-text">JSON Transaction</h4>
-              </div>
-              <Badge text="JSON" variant="neutral" />
+          <div class="format-item relative flex flex-col pb-6 border-b border-[var(--color-border)] md:min-h-[280px]">
+            <span class="absolute top-0 right-0"><Badge text="JSON" variant="neutral" /></span>
+            <div class="mb-4 flex items-center gap-3 pr-20">
+              <svg
+                class="h-6 w-6 text-primary"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
+                <path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" />
+              </svg>
+              <h4 class="text-lg font-semibold text-text">JSON Transaction</h4>
             </div>
 
+            <div class="mt-auto">
             <pre
-              class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5"
+              class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5 md:min-h-[120px]"
               aria-label="Example JSON transaction"
             ><code class="font-mono text-xs leading-relaxed"><span class="token-bracket">{"{"}</span>
   <span class="token-key">"ref_block_num"</span>: <span class="token-number">1234</span>,
@@ -112,7 +118,8 @@ const authorities = [
     <span class="token-bracket">{"}"}</span><span class="token-bracket">]</span>
   <span class="token-bracket">]</span>
 <span class="token-bracket">{"}"}</span></code></pre>
-          </GlassCard>
+            </div>
+          </div>
         </div>
 
         <!-- Transaction Hash -->
@@ -121,38 +128,38 @@ const authorities = [
           data-animate="fade-up"
           data-delay="80"
         >
-          <GlassCard class="format-card">
-            <div class="mb-4 flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <svg
-                  class="h-6 w-6 text-secondary"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <line x1="4" x2="20" y1="9" y2="9" />
-                  <line x1="4" x2="20" y1="15" y2="15" />
-                  <line x1="10" x2="8" y1="3" y2="21" />
-                  <line x1="16" x2="14" y1="3" y2="21" />
-                </svg>
-                <h4 class="text-lg font-semibold text-text">Transaction Hash</h4>
-              </div>
-              <Badge text="HASH / ID" variant="neutral" />
+          <div class="format-item relative flex flex-col pb-6 border-b border-[var(--color-border)] md:min-h-[280px]">
+            <span class="absolute top-0 right-0"><Badge text="HASH / ID" variant="neutral" /></span>
+            <div class="mb-4 flex items-center gap-3 pr-24">
+              <svg
+                class="h-6 w-6 text-secondary"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="4" x2="20" y1="9" y2="9" />
+                <line x1="4" x2="20" y1="15" y2="15" />
+                <line x1="10" x2="8" y1="3" y2="21" />
+                <line x1="16" x2="14" y1="3" y2="21" />
+              </svg>
+              <h4 class="text-lg font-semibold text-text">Transaction Hash</h4>
             </div>
 
-            <pre
-              class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5"
-              aria-label="Example transaction hash"
-            ><code class="font-mono text-sm leading-relaxed text-text-muted">abc123def456...789</code></pre>
+            <div class="mt-auto">
+              <pre
+                class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5 md:min-h-[120px]"
+                aria-label="Example transaction hash"
+              ><code class="font-mono text-sm leading-relaxed text-text-muted">abc123def456...789</code></pre>
 
-            <p class="mt-4 text-sm leading-relaxed text-text-muted">
-              Paste any transaction ID — the inspector fetches it directly from the HIVE blockchain.
-            </p>
-          </GlassCard>
+              <p class="mt-4 text-sm leading-relaxed text-text-muted">
+                Paste any transaction ID — the inspector fetches it directly from the HIVE blockchain.
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- Binary / Hex -->
@@ -161,40 +168,40 @@ const authorities = [
           data-animate="fade-up"
           data-delay="160"
         >
-          <GlassCard class="format-card">
-            <div class="mb-4 flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <svg
-                  class="h-6 w-6 text-accent"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="14" y="14" width="4" height="6" rx="2" />
-                  <rect x="6" y="4" width="4" height="6" rx="2" />
-                  <path d="M6 20h4" />
-                  <path d="M14 10h4" />
-                  <path d="M6 14h2v6" />
-                  <path d="M14 4h2v6" />
-                </svg>
-                <h4 class="text-lg font-semibold text-text">Binary & Hexadecimal</h4>
-              </div>
-              <Badge text="HEX / BINARY" variant="neutral" />
+          <div class="format-item relative flex flex-col pb-6 border-b border-[var(--color-border)] md:border-b-0 md:min-h-[280px]">
+            <span class="absolute top-0 right-0"><Badge text="HEX / BINARY" variant="neutral" /></span>
+            <div class="mb-4 flex items-center gap-3 pr-28">
+              <svg
+                class="h-6 w-6 text-accent"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="14" y="14" width="4" height="6" rx="2" />
+                <rect x="6" y="4" width="4" height="6" rx="2" />
+                <path d="M6 20h4" />
+                <path d="M14 10h4" />
+                <path d="M6 14h2v6" />
+                <path d="M14 4h2v6" />
+              </svg>
+              <h4 class="text-lg font-semibold text-text">Binary & Hexadecimal</h4>
             </div>
 
-            <pre
-              class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5"
-              aria-label="Example hexadecimal transaction"
-            ><code class="font-mono text-sm leading-relaxed text-text-muted">0x1f8b0800000000000003...</code></pre>
+            <div class="mt-auto">
+              <pre
+                class="code-block overflow-x-auto rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-code)] p-4 md:p-5 md:min-h-[120px]"
+                aria-label="Example hexadecimal transaction"
+              ><code class="font-mono text-sm leading-relaxed text-text-muted">0x1f8b0800000000000003...</code></pre>
 
-            <p class="mt-4 text-sm leading-relaxed text-text-muted">
-              Raw binary or hex-encoded transactions are decoded automatically.
-            </p>
-          </GlassCard>
+              <p class="mt-4 text-sm leading-relaxed text-text-muted">
+                Raw binary or hex-encoded transactions are decoded automatically.
+              </p>
+            </div>
+          </div>
         </div>
 
         <!-- File Upload -->
@@ -203,31 +210,11 @@ const authorities = [
           data-animate="fade-up"
           data-delay="240"
         >
-          <GlassCard class="format-card">
-            <div class="mb-4 flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <svg
-                  class="h-6 w-6 text-primary"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="17 8 12 3 7 8" />
-                  <line x1="12" x2="12" y1="3" y2="15" />
-                </svg>
-                <h4 class="text-lg font-semibold text-text">File Upload</h4>
-              </div>
-              <Badge text="FILE UPLOAD" variant="neutral" />
-            </div>
-
-            <div class="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-[var(--color-border-hover)] bg-[var(--color-surface-code)] px-6 py-8">
+          <div class="format-item relative flex flex-col pb-6 md:pb-0 md:min-h-[280px]">
+            <span class="absolute top-0 right-0"><Badge text="FILE UPLOAD" variant="neutral" /></span>
+            <div class="mb-4 flex items-center gap-3 pr-28">
               <svg
-                class="h-8 w-8 text-text-dim"
+                class="h-6 w-6 text-primary"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -240,14 +227,34 @@ const authorities = [
                 <polyline points="17 8 12 3 7 8" />
                 <line x1="12" x2="12" y1="3" y2="15" />
               </svg>
-              <span class="text-sm text-text-muted">Drop your file here</span>
-              <span class="text-xs font-medium tracking-wide text-text-dim">.json, .bin, or .hex</span>
+              <h4 class="text-lg font-semibold text-text">File Upload</h4>
             </div>
 
-            <p class="mt-4 text-sm leading-relaxed text-text-muted">
-              Upload JSON, binary, or hex files. Auto-detection of format included.
-            </p>
-          </GlassCard>
+            <div class="mt-auto">
+              <div class="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-[var(--color-border-hover)] bg-[var(--color-surface-code)] px-6 py-8 md:min-h-[120px]">
+                <svg
+                  class="h-8 w-8 text-text-dim"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" x2="12" y1="3" y2="15" />
+                </svg>
+                <span class="text-sm text-text-muted">Drop your file here</span>
+                <span class="text-xs font-medium tracking-wide text-text-dim">.json, .bin, or .hex</span>
+              </div>
+
+              <p class="mt-4 text-sm leading-relaxed text-text-muted">
+                Upload JSON, binary, or hex files. Auto-detection of format included.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -255,107 +262,55 @@ const authorities = [
     <!-- Sub-block 2: Authority Types -->
     <div>
       <h3
-        class="animate-on-scroll mb-8 text-center text-lg font-semibold tracking-[-0.01em] text-text-muted uppercase tracking-widest sm:text-xl"
+        class="animate-on-scroll mb-8 text-center text-lg font-semibold text-text-muted uppercase tracking-widest sm:text-xl"
         data-animate="fade-up"
         data-delay="0"
       >
         Authority Types
       </h3>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+      <dl class="authority-list" role="list">
         {authorities.map((auth) => (
           <div
-            class="animate-on-scroll"
+            class="animate-on-scroll authority-row border-b border-[#262626] py-5 px-4"
+            style={`border-left: 3px solid ${auth.color};`}
             data-animate="fade-left"
             data-delay={String(auth.delay)}
+            role="listitem"
           >
-            <GlassCard
-              class={`authority-card h-full border-l-[3px]`}
-              style={`border-left-color: ${auth.color};`}
-            >
-              <!-- Icon container -->
-              <div
-                class="flex h-10 w-10 items-center justify-center rounded-lg"
-                style={`background: ${auth.colorAlpha};`}
-              >
-                {auth.name === "Posting" && (
-                  <svg
-                    class="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    style={`color: ${auth.color};`}
-                  >
-                    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z" />
-                    <path d="m15 5 4 4" />
-                  </svg>
-                )}
-                {auth.name === "Active" && (
-                  <svg
-                    class="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    style={`color: ${auth.color};`}
-                  >
-                    <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" />
-                  </svg>
-                )}
-                {auth.name === "Owner" && (
-                  <svg
-                    class="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    style={`color: ${auth.color};`}
-                  >
-                    <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z" />
-                    <path d="M5 21h14" />
-                  </svg>
-                )}
+            <div class="flex flex-col gap-3 md:flex-row md:items-center md:gap-6">
+              <!-- Name + Badge -->
+              <div class="md:w-[200px] md:shrink-0">
+                <dt
+                  class="font-mono text-base font-bold"
+                  style={`color: ${auth.color};`}
+                >
+                  {auth.name}
+                </dt>
+                <div class="mt-1">
+                  <Badge text={auth.tagText} variant={auth.badgeVariant} />
+                </div>
               </div>
-
-              <!-- Badge -->
-              <div class="mt-4">
-                <Badge text={auth.tagText} variant={auth.badgeVariant} />
-              </div>
-
-              <!-- Title -->
-              <h4 class="mt-3 text-lg font-semibold tracking-[-0.01em] text-text lg:text-2xl">
-                {auth.name} Authority
-              </h4>
 
               <!-- Description -->
-              <p class="mt-2 text-sm leading-relaxed text-text-muted lg:text-base">
+              <dd class="text-sm leading-relaxed text-text-muted md:flex-1">
                 {auth.description}
-              </p>
+              </dd>
 
-              <!-- Examples pills -->
-              <div class="mt-4 flex flex-wrap gap-2">
+              <!-- Example pills -->
+              <div class="flex flex-wrap gap-2 md:shrink-0">
                 {auth.examples.map((example) => (
-                  <span class="rounded-full bg-surface-light px-3 py-1 text-xs font-medium text-text-dim lg:text-sm">
+                  <span class="rounded-full bg-surface-light px-3 py-1 text-xs font-medium text-text-dim">
                     {example}
                   </span>
                 ))}
               </div>
-            </GlassCard>
+            </div>
           </div>
         ))}
-      </div>
+      </dl>
 
-      <!-- Note below cards -->
+      <!-- Note below -->
       <p
         class="animate-on-scroll mx-auto mt-8 max-w-[720px] text-center text-sm leading-relaxed text-text-dim md:mt-10"
         data-animate="fade-up"
@@ -373,20 +328,17 @@ const authorities = [
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Format cards — no translateY hover on code cards */
-  .format-card:hover {
-    transform: none;
+  /* Authority row — subtle hover */
+  .authority-row {
+    transition: background-color 200ms ease-out;
   }
 
-  /* Authority card — border-left glow on hover */
-  .authority-card {
-    transition:
-      border-color 250ms ease-out,
-      box-shadow 250ms ease-out;
+  .authority-row:hover {
+    background-color: rgba(255, 255, 255, 0.02);
   }
 
-  .authority-card:hover {
-    transform: none;
+  .authority-row:last-child {
+    border-bottom: none;
   }
 
   /* fade-left animation keyframe */
