@@ -72,11 +72,12 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
     </a>
 
     <!-- Desktop nav links (hidden on mobile) -->
-    <ul class="hidden items-center gap-6 md:flex" role="list">
+    <ul class="hidden items-center gap-8 md:flex" role="list">
       <li>
         <a
           href="#features"
-          class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
+          data-section="features"
+          class="desktop-nav-link text-base font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
         >
           Features
         </a>
@@ -84,7 +85,8 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
       <li>
         <a
           href="#details"
-          class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
+          data-section="details"
+          class="desktop-nav-link text-base font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
         >
           Details
         </a>
@@ -92,7 +94,8 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
       <li>
         <a
           href="#footer-cta"
-          class="text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
+          data-section="footer-cta"
+          class="desktop-nav-link text-base font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:text-[var(--color-text)]"
         >
           Open Source
         </a>
@@ -184,7 +187,8 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
             <li>
               <a
                 href="#features"
-                class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
+                data-section="features"
+                class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
               >
                 Features
               </a>
@@ -192,7 +196,8 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
             <li>
               <a
                 href="#details"
-                class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
+                data-section="details"
+                class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
               >
                 Details
               </a>
@@ -200,7 +205,8 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
             <li>
               <a
                 href="#footer-cta"
-                class="mobile-nav-link block rounded-lg px-4 py-3 text-sm font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
+                data-section="footer-cta"
+                class="mobile-nav-link block rounded-lg px-4 py-3 text-base font-medium text-[var(--color-text-muted)] transition-colors duration-150 ease-out hover:bg-[var(--color-surface-light)] hover:text-[var(--color-text)]"
               >
                 Open Source
               </a>
@@ -259,6 +265,19 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
 
   /* Close mobile menu when a nav link is clicked */
   /* This relies on the details element losing focus */
+
+  /* Active nav link — desktop */
+  .desktop-nav-link.nav-link--active {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 2px;
+  }
+
+  /* Active nav link — mobile */
+  .mobile-nav-link.nav-link--active {
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
 </style>
 
 <script>
@@ -281,4 +300,62 @@ const hiveBridgeUrl = HIVE_BRIDGE_URL;
       }
     }
   });
+
+  // Scroll spy — highlight active nav link based on visible section
+  (() => {
+    const sectionIds = ['features', 'details', 'footer-cta'];
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>(
+      '[data-section]'
+    );
+
+    function setActiveSection(sectionId: string | null) {
+      navLinks.forEach((link) => {
+        const isActive = link.dataset.section === sectionId;
+        link.classList.toggle('nav-link--active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    // Track which sections are currently intersecting
+    const visibleSections = new Map<string, IntersectionObserverEntry>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          if (entry.isIntersecting) {
+            visibleSections.set(id, entry);
+          } else {
+            visibleSections.delete(id);
+          }
+        });
+
+        // Pick the first visible section in DOM order
+        if (visibleSections.size === 0) {
+          setActiveSection(null);
+          return;
+        }
+
+        for (const id of sectionIds) {
+          if (visibleSections.has(id)) {
+            setActiveSection(id);
+            return;
+          }
+        }
+      },
+      {
+        rootMargin: '-64px 0px -40% 0px',
+        threshold: 0.1,
+      }
+    );
+
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+  })();
 </script>
