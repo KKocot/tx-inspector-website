@@ -1,5 +1,5 @@
 ---
-import { GITLAB_URL, HIVE_URL, HIVE_BRIDGE_URL, BLOCKCHAIN_WARES_URL } from "../config";
+import { GITLAB_URL, HIVE_URL, HIVE_BRIDGE_URL, BLOCKCHAIN_WARES_URL, HIVE_TOOLS_URL } from "../config";
 
 const licenseUrl = `${GITLAB_URL}/-/blob/main/LICENSE`;
 ---
@@ -43,6 +43,13 @@ const licenseUrl = `${GITLAB_URL}/-/blob/main/LICENSE`;
       class="tmux-status__link"
       aria-label="Blockchain Wares — opens in new tab"
       >Blockchain Wares</a
+    ><span class="tmux-status__sep" aria-hidden="true">│</span><a
+      href={HIVE_TOOLS_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tmux-status__link"
+      aria-label="Hive Tools — opens in new tab"
+      >Hive Tools</a
     >
   </div>
 </footer>
